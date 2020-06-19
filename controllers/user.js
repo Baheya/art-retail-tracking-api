@@ -2,16 +2,17 @@ const User = require('../models/user');
 const { ErrorHandler } = require('../helpers/error');
 
 exports.register = async (req, res, next) => {
+  if (!req.body.name || !req.body.email || !req.body.password) {
+    throw new ErrorHandler(400, 'Please fill out all the required fields.');
+  }
+  const user = new User(req.body);
+  console.log(user);
   try {
-    const user = await User.create(req.body);
-    if (!req.body.name || !req.body.email || !req.body.password) {
-      throw new ErrorHandler(400, 'Please fill out all the required fields.');
-    }
     await user.save();
     const token = await user.generateAuthToken();
     res
       .status(201)
-      .json({ message: 'User registration successful.', user, token });
+      .send({ message: 'User registration successful.', user, token });
   } catch (error) {
     next(error);
   }
