@@ -5,7 +5,7 @@ import '../../styles/registerIllustration.scss';
 
 const RegisterIllustration = () => {
   return (
-    <img className="register-illustration" src={registerIllustration} alt="" />
+    <img className="register__illustration" src={registerIllustration} alt="" />
   );
 };
 
