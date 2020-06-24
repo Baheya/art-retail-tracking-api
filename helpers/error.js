@@ -13,11 +13,12 @@ const handleError = (err, res) => {
   if (err instanceof mongoose.Error.CastError) {
     return res.status(404).json({ message: 'Could not find artwork.' });
   }
-  res.status(statusCode).json({
+  res.status(statusCode).send({
     status: 'error',
     statusCode,
     message,
   });
+  console.log(res);
 };
 
 module.exports = {
