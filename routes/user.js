@@ -3,18 +3,18 @@ const userController = require('../controllers/user');
 const auth = require('../middleware/auth');
 const router = new express.Router();
 
-router.post('/register', userController.register);
+router.post('/api/register', userController.register);
 
-router.post('/login', userController.login);
+router.post('/api/login', userController.login);
 
-router.get('/profile', auth, userController.getProfile);
+router.get('/api/profile', auth, userController.getProfile);
 
-router.patch('/profile', auth, userController.updateProfile);
+router.patch('/api/profile', auth, userController.updateProfile);
 
-router.post('/logout', auth, userController.logout);
+router.post('/api/logout', auth, userController.logout);
 
-router.post('/logoutAll', auth, userController.logoutAll);
+router.post('/api/logoutAll', auth, userController.logoutAll);
 
-router.delete('/profile', auth, userController.deleteProfile);
+router.delete('/api/profile', auth, userController.deleteProfile);
 
 module.exports = router;
