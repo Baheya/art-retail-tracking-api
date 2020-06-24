@@ -1,10 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
-const Artwork = require('../models/artwork');
+const { ErrorHandler } = require('../helpers/error');
 
 const auth = async (req, res, next) => {
   try {
+    if (!req.header('Authorization')) {
+      throw new ErrorHandler(401, 'Please authenticate.');
+    }
     const token = req.header('Authorization').replace('Bearer ', '');
     const decoded = jwt.verify(token, process.env['JWT_SECRET']);
     const user = await User.findOne({
@@ -12,13 +15,13 @@ const auth = async (req, res, next) => {
       'tokens.token': token,
     });
     if (!user) {
-      throw new Error('Please authenticate.');
+      throw new ErrorHandler(401, 'Please authenticate.');
     }
     req.token = token;
     req.user = user;
     next();
   } catch (error) {
-    res.status(401).send({ message: error.message });
+    next(error);
   }
 };
 
