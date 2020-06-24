@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { ErrorHandler } = require('../helpers/error');
 
 const Artwork = require('./artwork');
 
@@ -72,12 +73,12 @@ userSchema.methods.toJSON = function () {
 
 userSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
-  if (!user) {
-    throw new Error('Unable to login.');
-  }
   const isMatch = await bcryptjs.compare(password, user.password);
-  if (!isMatch) {
-    throw new Error('Unable to login.');
+  if (!isMatch || !user) {
+    throw new ErrorHandler(
+      400,
+      'The email or password you have entered is incorrect.'
+    );
   }
   return user;
 };
