@@ -1,0 +1,20 @@
+nav {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 10px 0;
+  ul {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      color: black;
+      li {
+        list-style: none;
+        margin: 0 5px;
+      }
+    }
+  }
+}
