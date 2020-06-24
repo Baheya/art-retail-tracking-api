@@ -2,12 +2,20 @@ const User = require('../models/user');
 const { ErrorHandler } = require('../helpers/error');
 
 exports.register = async (req, res, next) => {
-  if (!req.body.name || !req.body.email || !req.body.password) {
-    throw new ErrorHandler(400, 'Please fill out all the required fields.');
-  }
-  const user = new User(req.body);
-  console.log(user);
   try {
+    if (
+      !req.body.data.name ||
+      !req.body.data.email ||
+      !req.body.data.password
+    ) {
+      throw new ErrorHandler(400, 'Please fill out all the required fields.');
+    }
+    let user = await User.findOne({ email: req.body.data.email });
+    if (user) {
+      throw new ErrorHandler(400, 'This e-mail address is already in use.');
+    }
+    user = new User(req.body.data);
+    console.log(user);
     await user.save();
     const token = await user.generateAuthToken();
     res
@@ -20,12 +28,16 @@ exports.register = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    throw new ErrorHandler(400, 'Please fill out all the required fields.');
-  }
   try {
+    if (!email || !password) {
+      throw new ErrorHandler(400, 'Please fill out all the required fields.');
+    } else if (!email.includes('@')) {
+      throw new ErrorHandler(400, 'Please enter a valid e-mail address.');
+    }
+
     const user = await User.findByCredentials(email, password);
     const token = await user.generateAuthToken();
+
     res.status(200).json({
       message: 'Logged in successfully.',
       user,
