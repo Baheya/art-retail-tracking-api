@@ -11,6 +11,9 @@ nav {
     a {
       text-decoration: none;
       color: black;
+      &.active {
+        color: #ff725e;
+      }
       li {
         list-style: none;
         margin: 0 5px;
