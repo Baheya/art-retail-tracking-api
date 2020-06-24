@@ -6,8 +6,10 @@ import Input from '../Input/index';
 import Button from '../Button/index';
 import RegisterIllustration from '../Illustrations/RegisterIllustration';
 
+import '../../styles/registercomponent.scss';
+
 const RegisterComponent = () => {
-  const [isError, setError] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [isRegistered, setRegistered] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [name, setName] = useState('');
@@ -15,19 +17,27 @@ const RegisterComponent = () => {
   const [password, setPassword] = useState('');
   const { setAuthTokens } = useAuth();
 
-  const postRegister = async () => {
-    console.log(name);
+  const postRegister = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setIsError(true);
+      setErrorMessage('Please fill out all the required fields.');
+    } else if (!email.includes('@')) {
+      setIsError(true);
+      setErrorMessage('Please enter a valid email.');
+    }
     try {
-      const response = await axios.post('/api/register', {
+      const result = await axios.post('/api/register', {
         data: { name: name, email: email, password: password },
       });
-      if (response.status === 201) {
+      if (result.status === 201) {
+        await setAuthTokens(result.data.token);
         setRegistered(true);
-        setAuthTokens(response.data);
+      } else {
+        setIsError(true);
       }
-      setError(true);
     } catch (error) {
-      setError(true);
+      setIsError(true);
       setErrorMessage(error.response.data.message);
     }
   };
@@ -37,9 +47,10 @@ const RegisterComponent = () => {
   }
 
   return (
-    <div className="register-container">
-      <div className="form-container">
-        <form>
+    <div className="register__container">
+      <div className="register__form__container">
+        <form className="register__form__component">
+          <h2>Register</h2>
           <label htmlFor="email">Email: </label>
           <Input
             type="email"
@@ -67,14 +78,22 @@ const RegisterComponent = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
+          <Button
+            className="register__button"
+            displayText="Register"
+            onClick={postRegister}
+          />
+          <p className="register__text--bottom">
+            Already have an account? <Link to="/login">Log In here.</Link>
+          </p>
+          {isError && (
+            <p className="register__error__message">{errorMessage}</p>
+          )}
         </form>
-        {isError && <p>{errorMessage}</p>}
-        <Button displayText="Register" onClick={postRegister} />
-        <p>
-          Already have an account? <Link to="/login">Login here.</Link>
-        </p>
       </div>
-      <RegisterIllustration />
+      <div className="register__illustration__container">
+        <RegisterIllustration />
+      </div>
     </div>
   );
 };
