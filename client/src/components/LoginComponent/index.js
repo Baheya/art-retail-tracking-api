@@ -46,8 +46,8 @@ const LoginComponent = () => {
   return (
     <>
       <div className="login__container">
-        <div className="form__container">
-          <form className="form__component">
+        <div className="login__form__container">
+          <form className="login__form__component">
             <h2>Log In</h2>
             <label htmlFor="email">Email: </label>
             <Input
@@ -78,7 +78,7 @@ const LoginComponent = () => {
             {isError && <p className="login__error__message">{errorMessage}</p>}
           </form>
         </div>
-        <div className="illustration__container">
+        <div className="login__illustration__container">
           <LoginIllustration />
         </div>
       </div>
