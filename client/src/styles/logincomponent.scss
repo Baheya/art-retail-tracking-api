@@ -1,17 +1,17 @@
 .login__container {
   display: flex;
-  height: 65vh;
-  .form__container {
+  height: 70vh;
+  .login__form__container {
     flex: 1;
-    margin: 30px;
+    margin: 50px;
     align-self: center;
     max-width: 50%;
     display: flex;
     justify-content: center;
-    .form__component {
+    .login__form__component {
       display: flex;
       flex-direction: column;
-      height: 350px;
+      height: 400px;
       h2 {
         font-weight: 700;
         text-transform: uppercase;
@@ -70,7 +70,7 @@
       }
     }
   }
-  .illustration__container {
+  .login__illustration__container {
     z-index: -1;
   }
 }
