@@ -1,0 +1,77 @@
+.register__container {
+  display: flex;
+  height: 65vh;
+  .register__form__container {
+    flex: 1;
+    margin: 50px;
+    align-self: center;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    .register__form__component {
+      display: flex;
+      flex-direction: column;
+      height: 400px;
+      h2 {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 32px;
+      }
+      input[type='email'],
+      input[type='password'],
+      input[type='text'] {
+        border: 0;
+        border-bottom: 1px solid black;
+        margin: 20px 0;
+        padding: 5px 0;
+        &:focus {
+          outline: #ff9d90;
+        }
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+      }
+      .register__button {
+        margin: 10px 0;
+        border-radius: 4px;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+          0 1px 3px rgba(0, 0, 0, 0.08);
+        background-image: linear-gradient(
+          to right,
+          #ff725e 0%,
+          #ffabf4 50%,
+          #ff9d90 100%
+        );
+        transition: 0.5s;
+        border: none;
+        &:hover {
+          background-position: right center;
+        }
+        &:focus {
+          outline: #ff9d90;
+        }
+        p {
+          text-transform: uppercase;
+        }
+      }
+      .register__text--bottom {
+        a {
+          text-decoration: none;
+          color: #ff725e;
+        }
+      }
+      .register__error__message {
+        max-width: 250px;
+        text-align: center;
+      }
+    }
+  }
+  .register__illustration__container {
+    z-index: -1;
+  }
+}
