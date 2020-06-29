@@ -1,13 +1,28 @@
 const Artwork = require('../models/artwork');
 const { ErrorHandler } = require('../helpers/error');
-const { deleteS3Artwork } = require('../helpers/aws-s3');
+const { deleteS3Artwork, generateGetUrl } = require('../helpers/aws-s3');
 
 exports.getArtworks = async (req, res, next) => {
   try {
     await req.user.populate({ path: 'artworks' }).execPopulate();
+
+    let artworks = [];
+    await req.user.artworks.forEach(async (artwork) => {
+      const artworkTitle = artwork.imageURL.replace(
+        `https://${process.env['AWS_BUCKET_NAME']}.s3.ap-south-1.amazonaws.com/`,
+        ''
+      );
+      let updatedImageURL = generateGetUrl(artworkTitle);
+      let updatedArtwork = {
+        ...artwork._doc,
+        imageURL: updatedImageURL,
+      };
+      artworks.push(updatedArtwork);
+    });
+
     res.status(200).json({
       message: 'Artworks fetched successfully.',
-      artworks: req.user.artworks,
+      artworks: artworks,
     });
   } catch (error) {
     next(error);
@@ -73,16 +88,16 @@ exports.deleteArtwork = async (req, res, next) => {
 };
 
 exports.uploadArtwork = async (req, res, next) => {
-  if (!req.body.title || !req.file) {
-    throw new ErrorHandler(400, 'Please fill out all required fields.');
-  }
-  const artwork = new Artwork({
-    title: req.body.title,
-    imageURL: `https://${process.env['AWS_BUCKET_NAME']}.s3.ap-south-1.amazonaws.com/${req.file.originalname}`,
-    artist: req.user._id,
-    edition: req.body.edition,
-  });
   try {
+    if (!req.body.title || !req.file) {
+      throw new ErrorHandler(400, 'Please fill out all required fields.');
+    }
+    const artwork = new Artwork({
+      title: req.body.title,
+      imageURL: `https://${process.env['AWS_BUCKET_NAME']}.s3.ap-south-1.amazonaws.com/${req.file.originalname}`,
+      artist: req.user._id,
+      edition: req.body.edition,
+    });
     await artwork.save();
     res.status(201).json({
       message: 'Artwork uploaded successfully!',
