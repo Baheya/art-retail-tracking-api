@@ -8,6 +8,7 @@ import Navigation from './components/Navigation';
 import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
 import Artworks from './components/Artworks';
+import UploadPage from './components/UploadPage';
 import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           <Route exact path="/login" component={LoginComponent} />
           <Route path="/register" component={RegisterComponent} />
           <PrivateRoute path="/home" component={Artworks} />
+          <PrivateRoute path="/upload" component={UploadPage} />
         </Switch>
       </Router>
     </AuthContext.Provider>
