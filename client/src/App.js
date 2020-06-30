@@ -4,7 +4,6 @@ import './App.css';
 import { AuthContext } from './context/auth';
 import Header from './components/Header';
 import Divider from './components/Divider';
-import Navigation from './components/Navigation';
 import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
 import Artworks from './components/Artworks';
@@ -24,8 +23,6 @@ const App = () => {
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
         <Header />
-        <Divider />
-        <Navigation />
         <Divider />
         <Switch>
           <Route exact path="/login" component={LoginComponent} />
