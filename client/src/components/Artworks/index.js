@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
 
+import ArtworksIllustration from '../Illustrations/ArtworksIllustration';
+
+import '../../styles/artworks.scss';
+
 const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
   const [isError, setError] = useState(false);
@@ -37,15 +41,26 @@ const Artworks = () => {
       </div>
     );
   }
+
   return (
     <div>
-      <h1>Your Artworks</h1>
-      <ul>
+      <div className="artworks__page__header">
+        <h1>Your Artwork</h1>
+        <div className="artworks__illustration__container">
+          <ArtworksIllustration />
+        </div>
+      </div>
+      <ul className="artworks__gallery__container">
         {artworks.map((artwork) => {
           return (
             <li key={artwork._id}>
-              <h3>{artwork.title}</h3>
-              <img src={artwork.imageURL} alt="" />
+              <a href={`/artworks/${artwork._id}`}>
+                <div className="image__container">
+                  <div className="image__gradient__overlay"></div>
+                  <img src={artwork.imageURL} alt="" />
+                  <p className="image__text"> {artwork.title}</p>
+                </div>
+              </a>
             </li>
           );
         })}
