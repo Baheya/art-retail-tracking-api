@@ -4,7 +4,10 @@ import axios from 'axios';
 import { useAuth } from '../../context/auth';
 import Input from '../Input/index';
 import Button from '../Button/index';
+import UploadIllustration from '../Illustrations/UploadIllustration';
 import { Redirect } from 'react-router-dom';
+
+import '../../styles/uploadpage.scss';
 
 const UploadPage = () => {
   const [title, setTitle] = useState('');
@@ -40,9 +43,9 @@ const UploadPage = () => {
 
   return (
     <div className="upload__container">
+      <h2>Upload Artwork</h2>
       <div className="upload__form__container">
         <form className="upload__form">
-          <h2>Upload Artwork</h2>
           <label htmlFor="title">Title: </label>
           <Input
             type="text"
@@ -52,12 +55,19 @@ const UploadPage = () => {
             onChange={(e) => setTitle(e.target.value)}
             value={title}
           />
-          <label htmlFor="image">Select the file you want to upload: </label>
-          <Input
-            type="file"
-            id="image"
-            name="image"
-            onChange={(e) => setImage(e.target.files[0])}
+          <label htmlFor="image" className="custom__file__input">
+            <Input
+              type="file"
+              id="image"
+              name="image"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+            Select a file
+          </label>
+          <input
+            type="text"
+            className="image__selection__text__preview"
+            value={image ? image.name : 'No file chosen'}
           />
           <Button
             className="artwork__upload__button"
@@ -67,6 +77,7 @@ const UploadPage = () => {
           {isError && <p className="upload__error__message">{errorMessage}</p>}
         </form>
       </div>
+      <UploadIllustration />
     </div>
   );
 };
