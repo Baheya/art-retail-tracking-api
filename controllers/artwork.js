@@ -36,6 +36,13 @@ exports.getArtwork = async (req, res, next) => {
       _id: artworkId,
       artist: req.user._id,
     });
+    const artworkTitle = artwork.imageURL.replace(
+      `https://${process.env['AWS_BUCKET_NAME']}.s3.ap-south-1.amazonaws.com/`,
+      ''
+    );
+    let updatedImageURL = generateGetUrl(artworkTitle);
+    artwork.imageURL = updatedImageURL;
+    console.log(artwork);
     if (!artwork) {
       throw new ErrorHandler(404, 'Could not find artwork.');
     }
