@@ -16,13 +16,13 @@ const Artworks = () => {
   try {
     useEffect(() => {
       const fetchArtworks = async () => {
-        const result = await axios.get('/api/artworks', {
+        const response = await axios.get('/api/artworks', {
           headers: {
             Authorization: `Bearer ${authTokens}`,
           },
         });
-        console.log(result.data);
-        setArtworks(...artworks, result.data.artworks);
+        console.log(response.data);
+        setArtworks(...artworks, response.data.artworks);
       };
       fetchArtworks();
     }, []);
@@ -54,13 +54,13 @@ const Artworks = () => {
         {artworks.map((artwork) => {
           return (
             <li key={artwork._id}>
-              <a href={`/artworks/${artwork._id}`}>
+              <Link to={`/artworks/${artwork._id}`}>
                 <div className="image__container">
                   <div className="image__gradient__overlay"></div>
                   <img src={artwork.imageURL} alt="" />
                   <p className="image__text"> {artwork.title}</p>
                 </div>
-              </a>
+              </Link>
             </li>
           );
         })}
