@@ -9,6 +9,7 @@ import RegisterComponent from './components/RegisterComponent';
 import Artworks from './components/Artworks';
 import UploadPage from './components/UploadPage';
 import PrivateRoute from './components/PrivateRoute';
+import Artwork from './components/Artwork';
 
 const App = () => {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/register" component={RegisterComponent} />
           <PrivateRoute path="/home" component={Artworks} />
           <PrivateRoute path="/upload" component={UploadPage} />
+          <PrivateRoute path="/artworks/:id" component={Artwork} />
         </Switch>
       </Router>
     </AuthContext.Provider>
