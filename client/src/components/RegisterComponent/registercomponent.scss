@@ -1,0 +1,88 @@
+@import '../../sass/abstracts/variables';
+
+.register__container {
+  .register__form__container {
+    display: block;
+    padding: 2em;
+    text-align: center;
+    justify-content: center;
+    .register__form__component {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 1rem;
+      margin: 0 auto;
+      font-family: 'Yantramanav', 'sans-serif';
+      @media only screen and (min-width: 840px) {
+        width: 50%;
+      }
+      h2 {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 32px;
+      }
+      .form__input {
+        display: flex;
+        flex-direction: column;
+        margin: 5px;
+        text-align: left;
+        label {
+          letter-spacing: 0.5rem;
+          text-transform: uppercase;
+          font-size: 13px;
+          color: $almost-black;
+        }
+
+        input {
+          border: 0;
+          border-bottom: 1px solid #cccccc;
+          margin: 20px 20px 20px 0;
+          padding: 5px 0;
+          font-family: 'Yantramanav', 'sans-serif';
+          color: $grey;
+          &:focus {
+            outline-color: #cccccc;
+          }
+        }
+      }
+      .register__button {
+        background-color: $navy-blue;
+        border: 1px solid $navy-blue;
+        cursor: pointer;
+        margin: 0 auto;
+        display: block;
+        &:hover {
+          background-color: #ffffff;
+          p {
+            color: $navy-blue;
+          }
+        }
+        p {
+          color: white;
+          margin: 10px 2px;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 10px;
+          letter-spacing: 0.5em;
+          white-space: nowrap;
+        }
+      }
+      .register__text--bottom {
+        text-align: center;
+        margin: 2rem 0;
+        a {
+          color: $grey;
+          text-decoration: none;
+          &:hover {
+            color: $almost-black;
+          }
+        }
+      }
+      .register__error__message {
+        text-align: center;
+        border: 1px solid $almost-black;
+        padding: 1rem;
+      }
+    }
+  }
+}
