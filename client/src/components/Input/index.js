@@ -9,6 +9,8 @@ const Input = (props) => {
       onChange={props.onChange}
       value={props.value}
       placeholder={props.placeholder}
+      defaultValue={props.defaultValue}
+      min={props.min}
     />
   );
 };
