@@ -63,7 +63,13 @@ exports.updateArtwork = async (req, res, next) => {
     if (!artwork) {
       throw new ErrorHandler(404, 'Could not find artwork.');
     }
-    updates.forEach((update) => (artwork[update] = req.body[update]));
+    updates.forEach((update) => {
+      artwork[update] = req.body[update];
+    });
+
+    if (req.file) {
+      artwork.imageURL = `https://${process.env['AWS_BUCKET_NAME']}.s3.ap-south-1.amazonaws.com/${req.file.originalname}`;
+    }
     await artwork.save();
     res.status(200).json({ message: 'Updated artwork.', artwork });
   } catch (error) {
@@ -103,13 +109,31 @@ exports.uploadArtwork = async (req, res, next) => {
       title: req.body.title,
       imageURL: `https://${process.env['AWS_BUCKET_NAME']}.s3.ap-south-1.amazonaws.com/${req.file.originalname}`,
       artist: req.user._id,
-      edition: req.body.edition,
+      currentEdition: req.body.currentEdition,
+      totalEdition: req.body.totalEdition,
+      availablePrints: req.body.availablePrints,
+      soldPrints: req.body.soldPrints,
+      status: req.body.status,
+      price: req.body.price,
+      storageLink: req.body.storageLink,
+      storeLink: req.body.storeLink,
+      dateOfCreation: req.body.dateOfCreation,
     });
     await artwork.save();
     res.status(201).json({
       message: 'Artwork uploaded successfully!',
       artwork,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getArtworkSales = async (req, res, next) => {
+  try {
+    await req.user.populate({ path: 'artworks' }).execPopulate();
+    const sales = [];
+    req.user.artworks.map((artwork) => {});
   } catch (error) {
     next(error);
   }
