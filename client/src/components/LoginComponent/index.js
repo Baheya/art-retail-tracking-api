@@ -6,7 +6,7 @@ import { useAuth } from '../../context/auth';
 import Input from '../Input/index';
 import Button from '../Button/index';
 
-import '../../styles/logincomponent.scss';
+import './logincomponent.scss';
 
 const LoginComponent = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -49,24 +49,28 @@ const LoginComponent = () => {
         <div className="login__form__container">
           <form className="login__form__component">
             <h2>Log In</h2>
-            <label htmlFor="email">Email: </label>
-            <Input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Type your email address here"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-            <label htmlFor="password">Password: </label>
-            <Input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Type your password here"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
+            <div className="form__input">
+              <label htmlFor="email">Email: </label>
+              <Input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Type your email address here"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </div>
+            <div className="form__input">
+              <label htmlFor="password">Password: </label>
+              <Input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Type your password here"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </div>
             <Button
               className="login__button"
               onClick={postLogin}
@@ -77,9 +81,6 @@ const LoginComponent = () => {
             </p>
             {isError && <p className="login__error__message">{errorMessage}</p>}
           </form>
-        </div>
-        <div className="login__illustration__container">
-          <LoginIllustration />
         </div>
       </div>
     </>
