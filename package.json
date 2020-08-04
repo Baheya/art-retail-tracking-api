@@ -13,9 +13,6 @@
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
     "test": "env-cmd -f ./config/test.env jest --watch --runInBand --detectOpenHandles"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
