@@ -1,5 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const path = require('path');
+
 require('../db/mongoose');
 
 const artworkRoutes = require('../routes/artwork');
@@ -31,6 +33,12 @@ app.use((err, req, res, next) => {
     err.statusCode = 500;
   }
   handleError(err, res);
+});
+
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
 module.exports = app;
