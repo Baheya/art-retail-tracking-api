@@ -1,0 +1,106 @@
+@import '../../sass/abstracts/variables';
+
+.upload_form__container {
+  display: block;
+  padding: 2em;
+
+  .upload__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    align-self: center;
+    font-family: 'Yantramanav', 'sans-serif';
+    @media only screen and (min-width: 840px) {
+      flex-wrap: wrap;
+      height: 400px;
+    }
+    .form__input {
+      display: flex;
+      flex-direction: column;
+      margin: 5px;
+      text-align: left;
+      label {
+        letter-spacing: 0.5rem;
+        text-transform: uppercase;
+        font-size: 13px;
+        color: $almost-black;
+      }
+
+      .edition__input {
+        display: flex;
+        input {
+          width: 40px;
+        }
+        p {
+          margin: 20px 20px 0 0;
+          font-family: 'Yantramanav', 'sans-serif';
+          text-transform: uppercase;
+          letter-spacing: 0.3rem;
+          font-size: 13px;
+        }
+      }
+
+      input,
+      select {
+        border: 0;
+        border-bottom: 1px solid #cccccc;
+        margin: 20px 20px 20px 0;
+        padding: 5px 0;
+        font-family: 'Yantramanav', 'sans-serif';
+        color: $grey;
+        &:focus {
+          outline-color: #cccccc;
+        }
+      }
+      input[type='file'] {
+        display: none;
+      }
+      .custom__file__input {
+        background-color: $navy-blue;
+        color: #ffff;
+        width: 100px;
+        cursor: pointer;
+        padding: 8px 0;
+        font-size: 12px;
+        text-align: center;
+        letter-spacing: 0.5rem;
+        border: 1px solid $navy-blue;
+        &:hover {
+          background-color: #ffff;
+          color: $navy-blue;
+        }
+      }
+      .image__selection__text__preview {
+        color: #cccccc;
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+        border-bottom: none;
+        padding-bottom: 5px;
+        margin: 11px 10px 20px 0;
+      }
+    }
+  }
+  .upload__button {
+    background-color: $navy-blue;
+    border: 1px solid $navy-blue;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    &:hover {
+      background-color: #ffffff;
+      p {
+        color: $navy-blue;
+      }
+    }
+    p {
+      color: white;
+      margin: 10px 2px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      white-space: nowrap;
+    }
+  }
+}
