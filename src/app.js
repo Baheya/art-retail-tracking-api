@@ -35,10 +35,10 @@ app.use((err, req, res, next) => {
   handleError(err, res);
 });
 
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use(express.static(path.join(__dirname, '/../client', 'build')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '/../client', 'build', 'index.html'));
 });
 
 module.exports = app;
