@@ -6,7 +6,7 @@ import Input from '../Input/index';
 import Button from '../Button/index';
 import RegisterIllustration from '../Illustrations/RegisterIllustration';
 
-import '../../styles/registercomponent.scss';
+import './registercomponent.scss';
 
 const RegisterComponent = () => {
   const [isError, setIsError] = useState(false);
@@ -51,33 +51,39 @@ const RegisterComponent = () => {
       <div className="register__form__container">
         <form className="register__form__component">
           <h2>Register</h2>
-          <label htmlFor="email">Email: </label>
-          <Input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter your email here"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-          <label htmlFor="Username">Name: </label>
-          <Input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Enter your first name here"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-          <label htmlFor="password">Password: </label>
-          <Input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter your password here"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
+          <div className="form__input">
+            <label htmlFor="email">Email: </label>
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter your email here"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+          </div>
+          <div className="form__input">
+            <label htmlFor="Username">Name: </label>
+            <Input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter your first name here"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+          </div>
+          <div className="form__input">
+            <label htmlFor="password">Password: </label>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your password here"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </div>
           <Button
             className="register__button"
             displayText="Register"
@@ -90,9 +96,6 @@ const RegisterComponent = () => {
             <p className="register__error__message">{errorMessage}</p>
           )}
         </form>
-      </div>
-      <div className="register__illustration__container">
-        <RegisterIllustration />
       </div>
     </div>
   );
