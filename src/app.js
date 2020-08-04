@@ -4,6 +4,7 @@ require('../db/mongoose');
 
 const artworkRoutes = require('../routes/artwork');
 const userRoutes = require('../routes/user');
+const saleRoutes = require('../routes/sale');
 const { handleError } = require('../helpers/error');
 
 const app = express();
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 
 app.use(artworkRoutes);
 app.use(userRoutes);
+app.use(saleRoutes);
 
 app.use((err, req, res, next) => {
   if (err.statusCode === undefined) {
