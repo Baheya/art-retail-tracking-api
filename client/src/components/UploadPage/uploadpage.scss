@@ -1,0 +1,15 @@
+.upload_page__container {
+  position: relative;
+  h2 {
+    margin: 0;
+    color: #ffff;
+    text-align: center;
+    font-size: 70px;
+    text-transform: uppercase;
+  }
+  .upload__error__message {
+    max-width: 250px;
+    text-align: center;
+    font-size: 12px;
+  }
+}
