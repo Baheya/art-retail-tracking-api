@@ -1,10 +1,10 @@
 {
-  "short_name": "Art Retail Tracking",
   "name": "ART - Art Retail Tracking",
+  "short_name": "Art Retail Tracking",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "48x48",
       "type": "image/x-icon"
     },
     {
