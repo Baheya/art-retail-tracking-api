@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
+const compression = require('compression');
 
 require('../db/mongoose');
 
@@ -15,6 +16,7 @@ const app = express();
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(compression());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
