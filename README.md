@@ -23,3 +23,4 @@ For styling, I opted to use SASS and recreate a design from a theme bought off o
 
 # To Do
 - Add different permission roles to User so that someone working for a gallery that represents a number of users can log in and check those users' artwork for updated information.
+- Optimize images to reduce bundle sizes and load times.
