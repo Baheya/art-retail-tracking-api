@@ -24,7 +24,6 @@ const Artworks = () => {
             Authorization: `Bearer ${authTokens}`,
           },
         });
-        console.log(response.data);
         setArtworks(...artworks, response.data.artworks);
         setIsLoading(false);
       };
