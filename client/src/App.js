@@ -36,6 +36,7 @@ const App = () => {
         <Header />
         <Suspense fallback={<Loading text="Fetching Data" />}>
           <Switch>
+            <Redirect exact from="/" to="/home" />
             <Route exact path="/login" component={LoginComponent} />
             <Route path="/register" component={RegisterComponent} />
             <PrivateRoute path="/home" component={Artworks} />
