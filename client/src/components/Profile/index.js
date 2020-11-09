@@ -5,6 +5,8 @@ import FadeIn from 'react-fade-in';
 
 import Loading from '../Loading';
 
+import './profile.scss';
+
 const Profile = () => {
   const { authTokens } = useAuth();
   const [error, setIsError] = useState(false);
@@ -39,11 +41,13 @@ const Profile = () => {
         <Loading text="Getting your info" />
       ) : (
         <FadeIn>
-          <h1>Profile</h1>
-          <ul>
-            <li>Name: {user.name}</li>
-            <li>Email: {user.email}</li>
-          </ul>
+          <div className="profile__wrapper">
+            <h1>Profile</h1>
+            <ul>
+              <li>Name: {user.name}</li>
+              <li>Email: {user.email}</li>
+            </ul>
+          </div>
         </FadeIn>
       )}
     </>
