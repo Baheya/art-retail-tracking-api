@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import LoginIllustration from '../Illustrations/LoginIllustration';
 import { useAuth } from '../../context/auth';
 import Input from '../Input/index';
 import Button from '../Button/index';

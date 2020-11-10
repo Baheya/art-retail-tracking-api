@@ -4,7 +4,6 @@ import { Link, Redirect } from 'react-router-dom';
 import { useAuth } from '../../context/auth';
 import Input from '../Input/index';
 import Button from '../Button/index';
-import RegisterIllustration from '../Illustrations/RegisterIllustration';
 
 import './registercomponent.scss';
 
