@@ -10,7 +10,6 @@
     list-style: none;
     .image__container {
       position: relative;
-      width: 100%;
       display: grid;
       .image__gradient__overlay {
         position: absolute;
@@ -36,7 +35,6 @@
       &:hover {
         .image__gradient__overlay {
           background-color: #ffffff;
-          // opacity: 0.9;
         }
         .image__text {
           opacity: 1;
@@ -61,7 +59,6 @@
     .image__container::before {
       content: '';
       padding-bottom: 100%;
-      display: block;
       grid-area: 1 / 1 / 2 / 2;
     }
   }
