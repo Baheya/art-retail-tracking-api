@@ -5,8 +5,6 @@ import FadeIn from 'react-fade-in';
 import Loading from '../Loading/index';
 import { useAuth } from '../../context/auth';
 
-import ArtworksIllustration from '../Illustrations/ArtworksIllustration';
-
 import './artworks.scss';
 
 const Artworks = () => {

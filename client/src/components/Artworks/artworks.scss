@@ -1,16 +1,25 @@
 .grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin: 30px 85px;
-  grid-gap: 2rem;
-  @media only screen and (min-width: 640px) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media only screen and (min-width: 840px) {
     grid-template-columns: 1fr 1fr;
+    display: grid;
+    margin: 30px 85px;
+    grid-gap: 2rem;
   }
   li {
     list-style: none;
+    margin: 1rem 0;
     .image__container {
+      width: 400px;
+      height: 400px;
       position: relative;
-      display: grid;
+      @media only screen and (min-width: 840px) {
+        width: 100%;
+        height: 100%;
+        display: grid;
+      }
       .image__gradient__overlay {
         position: absolute;
         width: 100%;
@@ -26,7 +35,6 @@
         opacity: 0;
         position: absolute;
         width: 100%;
-        height: 100%;
         left: 0;
         top: 50%;
         text-align: center;
@@ -50,16 +58,20 @@
         }
       }
       img {
-        grid-area: 1 / 1 / 2 / 2;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        @media only screen and (min-width: 640px) {
+          grid-area: 1 / 1 / 2 / 2;
+        }
       }
     }
     .image__container::before {
-      content: '';
-      padding-bottom: 100%;
-      grid-area: 1 / 1 / 2 / 2;
+      @media only screen and (min-width: 640px) {
+        content: '';
+        padding-bottom: 100%;
+        grid-area: 1 / 1 / 2 / 2;
+      }
     }
   }
 }
