@@ -45,7 +45,7 @@ const Artworks = () => {
             </p>
           ) : (
             <>
-              <ul className="grid">
+              <ul className="artworks__grid">
                 {artworks.map((artwork) => {
                   return (
                     <li key={artwork._id}>

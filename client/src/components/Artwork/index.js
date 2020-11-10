@@ -83,7 +83,6 @@ const Artwork = () => {
       const response = await axios.post(`/api/sales`, body, {
         headers: { Authorization: `Bearer ${authTokens}` },
       });
-      console.log(response.data);
       setToggleSale(!toggleSale);
     } catch (error) {
       setIsError(true);
@@ -114,7 +113,6 @@ const Artwork = () => {
           <FadeIn>
             <Link to="/home" className="back__button">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 className="icon icon-tabler icon-tabler-arrow-left"
                 width="32"
                 height="32"
@@ -131,9 +129,9 @@ const Artwork = () => {
                 <line x1="5" y1="12" x2="11" y2="6" />
               </svg>
             </Link>
-            <div className="grid">
+            <div className="artwork__grid">
               <div className="artwork-image__container">
-                <img src={artwork.imageURL} />
+                <img src={artwork.imageURL} alt="User uploaded artwork." />
               </div>
               <div className="artwork__info__container">
                 <div className="artwork-info__header">
