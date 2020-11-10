@@ -5,7 +5,6 @@ const HamburgerToggle = (props) => {
     <>
       {props.isOpen ? (
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           className="icon icon-tabler icon-tabler-x"
           width="28"
           height="28"
@@ -22,7 +21,6 @@ const HamburgerToggle = (props) => {
         </svg>
       ) : (
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           className="icon icon-tabler icon-tabler-align-justified"
           width="28"
           height="28"
